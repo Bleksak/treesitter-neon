@@ -29,3 +29,7 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"},
     }
 )
 ```
+
+## Contributing
+
+If you find a bug, or have a feature request, feel free to create a pull request or issue.
