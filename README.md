@@ -1,4 +1,3 @@
--- explain the project
 # Treesitter parser for Neon (Nette configuration) language
 
 ## Installation
