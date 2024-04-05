@@ -15,26 +15,27 @@ module.exports = grammar({
                 $.lvalue,
                 ':',
                 choice(
-                    $.rvalue,
+                    $.newline,
                     seq(
                         $.indent,
                         repeat1($.property),
                         $.dedent,
-                    )
+                    ),
+                    $.rvalue,
                 ),
                 optional($.comment),
             ),
         )),
 
         lvalue: $ => choice(
-            $.identifier,
+            $.identifier_lvalue,
+            $.number,
             $.string,
         ),
 
         rvalue: $ => choice(
-            $.string,
             $.identifier,
-            // $.unquoted_string,
+            $.string,
             $.number,
             $.boolean,
             $.entity,
@@ -86,9 +87,11 @@ module.exports = grammar({
             '-',
             $.rvalue,
         ),
-
-        identifier: () => /[a-zA-Z_][\w\.]*/,
-        string: () => /"([^"\\]|\\.)*"|'([^'\\]|\\.)*'/,
+        
+        identifier: () => /[a-zA-Z_\d\*\\\.][\w\.\*\\]*/,
+        // same as identifier, but allow numbers even at the beginning
+        identifier_lvalue: () => /[a-zA-Z_\d\*\\][\w\.\*\\]*/,
+        string: () => /".*" | \'.*\'/,
         octal_number: () => /0o[0-7]+/,
         hex_number: () => /0x[0-9a-f]+/,
         exponential_number: () => /[+\-]?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+\-]?\d+)?/,

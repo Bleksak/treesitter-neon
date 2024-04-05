@@ -34,7 +34,7 @@
                 "members": [
                   {
                     "type": "SYMBOL",
-                    "name": "rvalue"
+                    "name": "newline"
                   },
                   {
                     "type": "SEQ",
@@ -55,6 +55,10 @@
                         "name": "dedent"
                       }
                     ]
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "rvalue"
                   }
                 ]
               },
@@ -80,7 +84,11 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "identifier_lvalue"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
         },
         {
           "type": "SYMBOL",
@@ -93,11 +101,11 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "string"
+          "name": "identifier"
         },
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "string"
         },
         {
           "type": "SYMBOL",
@@ -294,11 +302,15 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z_][\\w\\.]*"
+      "value": "[a-zA-Z_\\d\\*\\\\\\.][\\w\\.\\*\\\\]*"
+    },
+    "identifier_lvalue": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z_\\d\\*\\\\][\\w\\.\\*\\\\]*"
     },
     "string": {
       "type": "PATTERN",
-      "value": "\"([^\"\\\\]|\\\\.)*\"|'([^'\\\\]|\\\\.)*'"
+      "value": "\".*\" | \\'.*\\'"
     },
     "octal_number": {
       "type": "PATTERN",

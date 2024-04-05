@@ -115,7 +115,11 @@
       "required": true,
       "types": [
         {
-          "type": "identifier",
+          "type": "identifier_lvalue",
+          "named": true
+        },
+        {
+          "type": "number",
           "named": true
         },
         {
@@ -208,6 +212,10 @@
         },
         {
           "type": "lvalue",
+          "named": true
+        },
+        {
+          "type": "newline",
           "named": true
         },
         {
@@ -313,7 +321,15 @@
     "named": true
   },
   {
+    "type": "identifier_lvalue",
+    "named": true
+  },
+  {
     "type": "indent",
+    "named": true
+  },
+  {
+    "type": "newline",
     "named": true
   },
   {
