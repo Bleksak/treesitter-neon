@@ -302,7 +302,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z_\\d\\*\\\\\\.][\\w\\.\\*\\\\]*"
+      "value": "[a-zA-Z_\\d\\*\\\\\\.][ \\w\\.\\*\\\\]*"
     },
     "identifier_lvalue": {
       "type": "PATTERN",

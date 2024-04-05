@@ -88,7 +88,7 @@ module.exports = grammar({
             $.rvalue,
         ),
         
-        identifier: () => /[a-zA-Z_\d\*\\\.][\w\.\*\\]*/,
+        identifier: () => /[a-zA-Z_\d\*\\\.][ \w\.\*\\]*/,
         // same as identifier, but allow numbers even at the beginning
         identifier_lvalue: () => /[a-zA-Z_\d\*\\][\w\.\*\\]*/,
         string: () => /".*" | \'.*\'/,
