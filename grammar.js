@@ -61,10 +61,13 @@ module.exports = grammar({
             optional(','),
         ),
 
-        parameter: $ => seq(
-            $.identifier,
-            ':',
-            $.rvalue
+        parameter: $ => choice(
+            $.rvalue,
+            seq(
+                $.identifier,
+                ':',
+                $.rvalue
+            )
         ),
 
         array: $ => seq(
@@ -87,8 +90,8 @@ module.exports = grammar({
             '-',
             $.rvalue,
         ),
-        
-        identifier: () => /[a-zA-Z_\d\*\\\.][ \w\.\*\\]*/,
+
+        identifier: () => /[a-zA-Z_\d\*\\\.\%][ \w\.\*\\\:\%]*/,
         // same as identifier, but allow numbers even at the beginning
         identifier_lvalue: () => /[a-zA-Z_\d\*\\][\w\.\*\\]*/,
         string: () => /".*" | \'.*\'/,
