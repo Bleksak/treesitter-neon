@@ -60,16 +60,16 @@ module.exports = grammar({
 			prec.left(
 				2,
 				choice(
-          seq(
-            $.multiline_string_double_quotes,
-            /([^"]*?)/,
-            $.multiline_string_double_quotes,
-          ),
-          seq(
-            $.multiline_string_single_quotes,
-            /([^']*?)/,
-            $.multiline_string_single_quotes,
-          ),
+					seq(
+						$.multiline_string_double_quotes,
+						/([^"]*?)/,
+						$.multiline_string_double_quotes,
+					),
+					seq(
+						$.multiline_string_single_quotes,
+						/([^']*?)/,
+						$.multiline_string_single_quotes,
+					),
 					seq(
 						$.normal_string_double_quotes,
 						/([^"\\]*(\\.[^"\\]*)*)/,
