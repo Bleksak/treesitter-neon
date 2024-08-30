@@ -56,8 +56,39 @@ module.exports = grammar({
 		identifier: () => /[a-zA-Z_\d\*\\\.\%][ \w\.\*\\\:\%]*/,
 		// same as identifier, but allow numbers even at the beginning
 		identifier_lvalue: () => /[a-zA-Z_\d\*\\][\w\.\*\\]*/,
-		string: () =>
-			choice(/"([^"\\]*(\\.[^"\\]*)*)"/, /'([^'\\]*(\\.[^'\\]*)*)'/),
+		string: ($) =>
+			choice(
+				// $.multiline_string,
+				/"([^"\\]*(\\.[^"\\]*)*)"/,
+				/'([^'\\]*(\\.[^'\\]*)*)'/,
+			),
+
+		// multiline_string: ($) =>
+		// 	choice(
+		// 		prec.left(
+		// 			2,
+		// 			seq(
+		// 				$.multiline_string_double_quotes,
+		// 				repeat($.newline),
+		// 				repeat(/(.*?)/),
+		// 				repeat($.newline),
+		// 				$.multiline_string_double_quotes,
+		// 			),
+		// 		),
+		// 		prec.left(
+		// 			2,
+		// 			seq(
+		// 				$.multiline_string_single_quotes,
+		// 				repeat(choice($.newline, $.indent, $.dedent)),
+		// 				repeat(/(.*?)/),
+		// 				repeat(choice($.newline, $.indent, $.dedent)),
+		// 				$.multiline_string_single_quotes,
+		// 			),
+		// 		),
+		// 	),
+		// multiline_string_double_quotes: () => /\"\"\"/,
+		// multiline_string_single_quotes: () => /\'\'\'/,
+
 		octal_number: () => /0o[0-7]+/,
 		hex_number: () => /0x[0-9a-f]+/,
 		exponential_number: () =>
