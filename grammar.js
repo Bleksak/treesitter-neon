@@ -1,6 +1,8 @@
+/// <reference types="tree-sitter-cli/dsl" />
+// @ts-check
+
 module.exports = grammar({
 	name: "neon",
-	// TODO: add multiline strings
 	externals: ($) => [$.indent, $.dedent, $.newline],
 	rules: {
 		document: ($) => repeat($.property),
@@ -54,13 +56,8 @@ module.exports = grammar({
 		identifier: () => /[a-zA-Z_\d\*\\\.\%][ \w\.\*\\\:\%]*/,
 		// same as identifier, but allow numbers even at the beginning
 		identifier_lvalue: () => /[a-zA-Z_\d\*\\][\w\.\*\\]*/,
-		string: ($) =>
-			choice(
-                seq(/\'\'\'/, repeat(choice(/./, $.newline, $.indent, $.dedent)), /\'\'\'/),
-                seq(/\"\"\"/, repeat(choice(/./, $.newline, $.indent, $.dedent)), /\"\"\"/),
-				/".*"/,
-				/\'.*\'/,
-			),
+		string: () =>
+			choice(/"([^"\\]*(\\.[^"\\]*)*)"/, /'([^'\\]*(\\.[^'\\]*)*)'/),
 		octal_number: () => /0o[0-7]+/,
 		hex_number: () => /0x[0-9a-f]+/,
 		exponential_number: () =>
