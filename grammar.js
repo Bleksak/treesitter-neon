@@ -51,7 +51,7 @@ module.exports = grammar({
 		list: ($) =>
 			prec.left(2, seq($.indent, repeat1(seq($.list_item)), $.dedent)),
 
-		list_item: ($) => seq("-", $.rvalue),
+		list_item: ($) => seq("-", $.rvalue, optional($.comment)),
 
 		identifier: () => /[a-zA-Z_\d\*\\\.\%\/][\/ \w\.\*\\\:\%]*/,
 		// same as identifier, but allow numbers even at the beginning
