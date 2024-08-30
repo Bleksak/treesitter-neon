@@ -269,6 +269,29 @@
     }
   },
   {
+    "type": "string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "dedent",
+          "named": true
+        },
+        {
+          "type": "indent",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "#",
     "named": false
   },
@@ -334,10 +357,6 @@
   },
   {
     "type": "octal_number",
-    "named": true
-  },
-  {
-    "type": "string",
     "named": true
   },
   {
